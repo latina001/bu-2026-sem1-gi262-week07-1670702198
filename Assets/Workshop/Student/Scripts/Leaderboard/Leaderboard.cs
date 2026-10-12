@@ -55,7 +55,7 @@ namespace Searching
 
             while (left <= right)
             {
-                int mid = (left - right) / 2;
+                int mid = left + (right - left) / 2;
                 if (scores[mid].score == score.score)
                 {
                     index = mid;
