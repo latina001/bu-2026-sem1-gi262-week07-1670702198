@@ -100,12 +100,12 @@ namespace Assignment
             {
                 if (array[i] == target)
                 {
-                    if (first == -1) first = i;  // เจอครั้งแรก
-                    last = i;                    // อัปเดตทุกครั้งที่เจอ
+                    if (first == -1) first = i; 
+                    last = i;                    
                 }
             }
 
-            if (first == -1) return new[] { -1 };   // ไม่พบ
+            if (first == -1) return new[] { -1 };   
             return new[] { first, last };
         }
 
@@ -115,7 +115,7 @@ namespace Assignment
 
             for (int i = 0; i < array.Length; i++)
             {
-                // เอาเฉพาะตัวที่น้อยกว่า target และมากกว่า max ที่เก็บไว้
+                
                 if (array[i] < target && array[i] > max)
                 {
                     max = array[i];
@@ -164,7 +164,7 @@ namespace Assignment
 
             while (true)
             {
-                // หาตัวที่ HP น้อยที่สุดในกลุ่มที่ยังไม่ได้เลือก
+                // คือมันต้องที่ HP น้อยที่สุดในกลุ่มที่ยังไม่ได้เลือก
                 int minIndex = -1;
                 for (int i = 0; i < enemyHPs.Length; i++)
                 {
@@ -188,7 +188,7 @@ namespace Assignment
                 count++;
             }
 
-            // เอาตัวที่เลือกไว้ใส่ array ตามลำดับเดิม
+            // เอาตัวที่เลือกไว้ใส่ array ตามลำดับเดิมก่อนนะจ๊ะตัวฉันเอง งงตั้งนาน
             int[] result = new int[count];
             int index = 0;
             for (int i = 0; i < enemyHPs.Length; i++)
