@@ -111,12 +111,45 @@ namespace Assignment
 
         public int AS02_FindMaxLessThan(int[] array, int target)
         {
-            throw new NotImplementedException();
+            int max = -1;
+
+            for (int i = 0; i < array.Length; i++)
+            {
+                // เอาเฉพาะตัวที่น้อยกว่า target และมากกว่า max ที่เก็บไว้
+                if (array[i] < target && array[i] > max)
+                {
+                    max = array[i];
+                }
+            }
+
+            return max;
         }
 
         public int[] AS03_FindRange(int[] array, int min, int max)
         {
-            throw new NotImplementedException();
+            // นับก่อนว่ามีกี่ตัวที่อยู่ในช่วง
+            int count = 0;
+            for (int i = 0; i < array.Length; i++)
+            {
+                if (array[i] >= min && array[i] <= max)
+                {
+                    count++;
+                }
+            }
+
+            // สร้าง array ตามจำนวนที่นับได้ แล้วใส่ค่าลงไป
+            int[] result = new int[count];
+            int index = 0;
+            for (int i = 0; i < array.Length; i++)
+            {
+                if (array[i] >= min && array[i] <= max)
+                {
+                    result[index] = array[i];
+                    index++;
+                }
+            }
+
+            return result;
         }
 
         #endregion
@@ -125,7 +158,49 @@ namespace Assignment
 
         public int[] EX01_FindTargetEnemies(int[] enemyHPs, int mana)
         {
-            throw new NotImplementedException();
+            bool[] used = new bool[enemyHPs.Length];
+            int sum = 0;
+            int count = 0;
+
+            while (true)
+            {
+                // หาตัวที่ HP น้อยที่สุดในกลุ่มที่ยังไม่ได้เลือก
+                int minIndex = -1;
+                for (int i = 0; i < enemyHPs.Length; i++)
+                {
+                    if (used[i] == false)
+                    {
+                        if (minIndex == -1 || enemyHPs[i] < enemyHPs[minIndex])
+                        {
+                            minIndex = i;
+                        }
+                    }
+                }
+
+                // ไม่เหลือตัวให้เลือกแล้ว หรือมานาไม่พอ ก็หยุด
+                if (minIndex == -1 || sum + enemyHPs[minIndex] > mana)
+                {
+                    break;
+                }
+
+                used[minIndex] = true;
+                sum = sum + enemyHPs[minIndex];
+                count++;
+            }
+
+            // เอาตัวที่เลือกไว้ใส่ array ตามลำดับเดิม
+            int[] result = new int[count];
+            int index = 0;
+            for (int i = 0; i < enemyHPs.Length; i++)
+            {
+                if (used[i])
+                {
+                    result[index] = enemyHPs[i];
+                    index++;
+                }
+            }
+
+            return result;
         }
 
         #endregion
